@@ -8,5 +8,6 @@ public class HashTableTest {
         table.put(bob);
 
         System.out.println(table.containsEmployee(bob));
+        System.out.println(table.get("Bob"));
     }
 }

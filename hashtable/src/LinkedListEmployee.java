@@ -1,10 +1,10 @@
-public class LinkedListEmployee<Employee> {
+public class LinkedListEmployee<T> {
 
     // Node class
-    private class Node<Employee> {
+    private class Node<T> {
         // INSTANCE VARIABLES
-        private Employee data;
-        private Node<Employee> link;
+        private T data;
+        private Node<T> link;
 
         // CONSTRUCTORS
         public Node( ){
@@ -12,7 +12,7 @@ public class LinkedListEmployee<Employee> {
             link = null;
         }
 
-        public Node(Employee newData, Node<Employee> newLink){
+        public Node(T newData, Node<T> newLink){
             data = newData;
             link = newLink;
         }
@@ -20,7 +20,7 @@ public class LinkedListEmployee<Employee> {
 
 // INSTANCE VARIABLES
     // Head node
-    private Node<Employee> head;
+    private Node<T> head;
 
 // CONSTRUCTORS
     // No arg constructor
@@ -30,8 +30,8 @@ public class LinkedListEmployee<Employee> {
 
 // METHODS
     // Add a new node (first in the list)
-    public void addToStart(Employee employee){
-        head = new Node<Employee>(employee, head);
+    public void addToStart(T employee){
+        head = new Node<T>(employee, head);
     }
 
     // Delete the head node
@@ -47,7 +47,7 @@ public class LinkedListEmployee<Employee> {
     // Length
     public int size( ){
         int count = 0;
-        Node<Employee> position = head;
+        Node<T> position = head;
         while (position != null) {
             count++;
             position = position.link;
@@ -56,14 +56,14 @@ public class LinkedListEmployee<Employee> {
     }
 
     // Contains
-    public boolean contains(Employee employee){
+    public boolean contains(T employee){
         return(find(employee) != null);
     }
 
     // Find searches for the first node that matches target or returns null
-    private Node<Employee> find(Employee target){
-        Node<Employee> position = head;
-        Employee nodeEmployee;
+    private Node<T> find(T target){
+        Node<T> position = head;
+        T nodeEmployee;
         // Iterate through each link changing to the nodes link each time
         while (position != null) {
             nodeEmployee = position.data;
@@ -76,28 +76,30 @@ public class LinkedListEmployee<Employee> {
     }
 
     // Find returns the reference to a node if target is found
-    public Employee findData(Employee target){
+    public T findData(T target){
         return find(target).data;
     }
 
     // findByName returns the employee in a list by searching by name
-    public Employee findByName(String name){
-        Node<Employee> position = head;
+    public Employee findByData(String name){
+        Node<T> position = head;
         Employee nodeEmployee;
+        Employee out = null;
         // Iterate through each link changing to the nodes link each time
         while (position != null) {
-            nodeEmployee = position.data;
-            if (nodeEmployee.equals(name)){
-                return nodeEmployee;
+            nodeEmployee = (Employee)position.data;
+            if (nodeEmployee.getName().equals(name)){
+                out = nodeEmployee;
             }
             position = position.link;
         }
+        return out;
     }
 
     // Prints all employees in the list
     public void outputList( )
     {
-        Node<Employee> position = head;
+        Node<T> position = head;
         while (position != null)
         {
             System.out.println(position.data);
@@ -127,11 +129,11 @@ public class LinkedListEmployee<Employee> {
             return false;
         else
         {
-            LinkedListEmployee<Employee> otherList = (LinkedListEmployee<Employee>)otherObject;
+            LinkedListEmployee<T> otherList = (LinkedListEmployee<T>)otherObject;
             if (size( ) != otherList.size( ))
                 return false;
-            Node<Employee> position = head;
-            Node<Employee> otherPosition = otherList.head;
+            Node<T> position = head;
+            Node<T> otherPosition = otherList.head;
             while (position != null)
             {
                 if (!(position.data.equals(otherPosition.data)))

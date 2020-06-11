@@ -43,9 +43,8 @@ public class HashTableEmployee {
     }
 
     public Employee get(String name){
-        Employee newEmployee = new Employee(name, new Date(1,1,1998));
         int hash = computeHash(name);
         LinkedListEmployee list = hashArray[hash];
-        System.out.println(list.findData(newEmployee));
+        return list.findByData(name);
     }
 }
