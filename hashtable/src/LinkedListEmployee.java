@@ -80,7 +80,7 @@ public class LinkedListEmployee<Employee> {
         return find(target).data;
     }
 
-    // Prints all employees in teh list
+    // Prints all employees in the list
     public void outputList( )
     {
         Node<Employee> position = head;
