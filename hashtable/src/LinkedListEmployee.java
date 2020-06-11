@@ -80,6 +80,20 @@ public class LinkedListEmployee<Employee> {
         return find(target).data;
     }
 
+    // findByName returns the employee in a list by searching by name
+    public Employee findByName(String name){
+        Node<Employee> position = head;
+        Employee nodeEmployee;
+        // Iterate through each link changing to the nodes link each time
+        while (position != null) {
+            nodeEmployee = position.data;
+            if (nodeEmployee.equals(name)){
+                return nodeEmployee;
+            }
+            position = position.link;
+        }
+    }
+
     // Prints all employees in the list
     public void outputList( )
     {
