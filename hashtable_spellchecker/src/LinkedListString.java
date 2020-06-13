@@ -1,4 +1,4 @@
-public class LinkedListEmployee<T> {
+public class LinkedListString<T> {
 
     // Node class
     private class Node<T> {
@@ -12,26 +12,26 @@ public class LinkedListEmployee<T> {
             link = null;
         }
 
-        public Node(T newData, Node<T> newLink){
-            data = newData;
+        public Node(T newString, Node<T> newLink){
+            data = newString;
             link = newLink;
         }
     }
 
-// INSTANCE VARIABLES
+    // INSTANCE VARIABLES
     // Head node
     private Node<T> head;
 
-// CONSTRUCTORS
+    // CONSTRUCTORS
     // No arg constructor
-    public LinkedListEmployee( ){
+    public LinkedListString( ){
         head = null;
     }
 
-// METHODS
+    // METHODS
     // Add a new node (first in the list)
-    public void addToStart(T employee){
-        head = new Node<T>(employee, head);
+    public void addToStart(T data){
+        head = new Node<T>(data, head);
     }
 
     // Delete the head node
@@ -56,18 +56,18 @@ public class LinkedListEmployee<T> {
     }
 
     // Contains
-    public boolean contains(T employee){
-        return(find(employee) != null);
+    public boolean contains(T data){
+        return(find(data) != null);
     }
 
     // Find searches for the first node that matches target or returns null
     private Node<T> find(T target){
         Node<T> position = head;
-        T nodeEmployee;
+        T nodeString;
         // Iterate through each link changing to the nodes link each time
         while (position != null) {
-            nodeEmployee = position.data;
-            if (nodeEmployee.equals(target)){
+            nodeString = position.data;
+            if (nodeString.equals(target)){
                 return position;
             }
             position = position.link;
@@ -76,25 +76,10 @@ public class LinkedListEmployee<T> {
     }
 
     // Find returns the reference to a node if target is found
-    public T findData(T target){
+    public T findString(T target){
         return find(target).data;
     }
 
-    // findByName returns the employee in a list by searching by name
-    public Employee findByData(String name){
-        Node<T> position = head;
-        Employee nodeEmployee;
-        Employee out = null;
-        // Iterate through each link changing to the nodes link each time
-        while (position != null) {
-            nodeEmployee = (Employee)position.data;
-            if (nodeEmployee.getName().equals(name)){
-                out = nodeEmployee;
-            }
-            position = position.link;
-        }
-        return out;
-    }
 
     // Prints all employees in the list
     public void outputList( )
@@ -105,6 +90,22 @@ public class LinkedListEmployee<T> {
             System.out.println(position.data);
             position = position.link;
         }
+    }
+
+    // findByName returns the employee in a list by searching by name
+    public String findByData(String name){
+        Node<T> position = head;
+        String nodeString;
+        String out = null;
+        // Iterate through each link changing to the nodes link each time
+        while (position != null) {
+            nodeString = (String)position.data;
+            if (nodeString.equals(name)){
+                out = nodeString;
+            }
+            position = position.link;
+        }
+        return out;
     }
 
     public boolean isEmpty( )
@@ -129,7 +130,7 @@ public class LinkedListEmployee<T> {
             return false;
         else
         {
-            LinkedListEmployee<T> otherList = (LinkedListEmployee<T>)otherObject;
+            LinkedListString<T> otherList = (LinkedListString<T>)otherObject;
             if (size( ) != otherList.size( ))
                 return false;
             Node<T> position = head;
@@ -145,4 +146,3 @@ public class LinkedListEmployee<T> {
         }
     }
 }
-
