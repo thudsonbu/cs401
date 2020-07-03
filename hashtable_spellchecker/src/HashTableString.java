@@ -1,6 +1,9 @@
+import java.nio.ByteBuffer;
+import java.security.MessageDigest;
+
 public class HashTableString {
     private LinkedListString[] hashArray;
-    private static final int SIZE = 10;
+    private static final int SIZE = 15000;
 
     // Hash table constructor (creates new linked lists for the array)
     public HashTableString() {
@@ -10,14 +13,36 @@ public class HashTableString {
         }
     }
 
-    // Uses the strings first name to create a hash
-    private int computeHash(String name){
+    public int computeHash(String word){
         int hash = 0;
-        for (int i = 0; i < name.length(); i++){
-            hash += name.charAt(i);
+        // Setup MD5 for hash creation
+        try {
+            // Specify which hashing algorithm for message digest to use
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            // Message digest takes in name
+            md.update(word.getBytes());
+            // Create byte array of what md computes the hash to be
+            byte byteData[] = md.digest();
+            // Create a byte butter out of the hash so that it can be modified
+            ByteBuffer wrapped = ByteBuffer.wrap(byteData);
+            // Convert the hash to an integer
+            int openHash = wrapped.getInt();
+            // Take remainder of hash / size of hashmap which will give the hash a position
+            hash = openHash % SIZE;
+        } catch(Exception e){
+            System.out.println("Hashing failed.");
         }
-        return hash % SIZE;
+        return Math.abs(hash);
     }
+
+//    // Uses the strings first name to create a hash
+//    private int computeHash(String name){
+//        int hash = 0;
+//        for (int i = 0; i < name.length(); i++){
+//            hash += name.charAt(i);
+//        }
+//        return hash % SIZE;
+//    }
 
     /**
      * Returns true if the target is in the hash table,

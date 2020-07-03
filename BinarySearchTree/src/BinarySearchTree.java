@@ -44,7 +44,7 @@ public class BinarySearchTree {
     // Node
     private static class Node{
         // instance variables
-        public int value; // the value stored within a node
+        public int value; // the value stored within a node (this would be the type of the referenced object)
         public Node leftLink; // reference to left child node
         public Node rightLink; // reference to right child node
 
@@ -65,7 +65,6 @@ public class BinarySearchTree {
 
     // Tree Structure
     private static class Tree{
-
         // Insert a node
         public Node insert(Node root, int value) {
             // If a tree has no root create the root node
