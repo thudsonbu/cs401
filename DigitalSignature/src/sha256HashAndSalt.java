@@ -1,15 +1,25 @@
 import java.security.MessageDigest;
- 
-public class MD5Hashing 
+import java.security.SecureRandom;
+
+public class sha256HashAndSalt
 {
     public static void main(String[] args)throws Exception
     {
-    	String password = "123456";
+    	String password = "&^dk37Te5(ehr";
  
-        MessageDigest md = MessageDigest.getInstance("MD5"); // Create a message digest object
-        md.update(password.getBytes()); // Encoding the password byte by byte
+        MessageDigest md = MessageDigest.getInstance("SHA-256"); // Create a message digest object
+
+        SecureRandom random = new SecureRandom(); // Create a secure random object
+
+        byte[] salt = new byte[16]; // Create a new blank salt to be added
+
+        random.nextBytes(salt); // Java random class creates random information for salt and adds to salt byte array
+
+        md.update(salt); // random information is added to the message digests internal array
+
+        md.update(password.getBytes()); // users password is added to message digests internal array
  
-        byte byteData[] = md.digest(); // create a byte array
+        byte[] byteData = md.digest(); // message digest uses SHA-256 to compute hashed password
  
         //convert the byte to hex format method 1
         StringBuffer sb = new StringBuffer(); // a string buffer is a modifiable string class

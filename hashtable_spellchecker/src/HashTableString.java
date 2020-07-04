@@ -35,15 +35,6 @@ public class HashTableString {
         return Math.abs(hash);
     }
 
-//    // Uses the strings first name to create a hash
-//    private int computeHash(String name){
-//        int hash = 0;
-//        for (int i = 0; i < name.length(); i++){
-//            hash += name.charAt(i);
-//        }
-//        return hash % SIZE;
-//    }
-
     /**
      * Returns true if the target is in the hash table,
      * false if it is not
