@@ -67,6 +67,7 @@ public class HeapTree {
     private static class Tree{
         // Current index in tree
         int maxIndex = 0;
+        int otherIndex = 0;
 
         // Insert a node
         public Node insert(Node root, int value) {
