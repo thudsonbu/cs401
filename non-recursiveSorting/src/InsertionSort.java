@@ -11,7 +11,7 @@ public class InsertionSort {
         int[] sortedArray = insertionSort(unsortedArray);
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
-        System.out.println("Array sorted in " + duration + " milliseconds.");
+        System.out.println("Array sorted in " + (duration/1000000) + " milliseconds.");
     }
 
     public static int[] insertionSort(int[] input){

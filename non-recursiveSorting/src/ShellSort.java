@@ -15,7 +15,7 @@ public class ShellSort {
         int[] sortedArray = shellSort(unsortedArray);
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
-        System.out.println("Array sorted in " + duration + " milliseconds.");
+        System.out.println("Array sorted in " + (duration/1000000) + " milliseconds.");
     }
 
     public static int[] shellSort(int[] input){

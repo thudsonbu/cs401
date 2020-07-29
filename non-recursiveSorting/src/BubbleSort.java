@@ -13,7 +13,7 @@ public class BubbleSort {
         int[] sortedArray = bubbleSort(unsortedArray);
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
-        System.out.println("Array sorted in " + duration + " milliseconds.");
+        System.out.println("Array sorted in " + (duration/1000000) + " milliseconds.");
     }
 
     public static int[] bubbleSort(int[] input){
