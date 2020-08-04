@@ -1,14 +1,18 @@
-public class Person {
+
+public class Person implements Comparable<Person> {
     // instance variables
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private int age;
     private double salary;
 
     // CONSTRUCTORS
     // full arg constructor
     public Person(String first, String last, int age, double salary){
-
+        this.setFirst(first);
+        this.setLast(last);
+        this.setAge(age);
+        this.setSalary(salary);
     }
 
     // other constructors not relevant
@@ -16,29 +20,29 @@ public class Person {
     // GET METHODS
 
     // get first name
-    private String getFirst() {
-        return this.firstname;
+    String getFirst() {
+        return this.firstName;
     }
 
     // get last name
-    private String getLast() {
-        return this.lastname;
+    String getLast() {
+        return this.lastName;
     }
 
     // get age
-    private int getAge() {
+    int getAge() {
         return this.age;
     }
 
     // get salary
-    private double getSalary() {
+    double getSalary() {
         return this.salary;
     }
 
     // SET METHODS
 
     // set first name
-    private boolean setFirst(String first) {
+    boolean setFirst(String first) {
         boolean set = true;
         // check if between 1 and 30 characters
         if (first.length() > 30 || first.length() < 1){
@@ -50,13 +54,13 @@ public class Person {
             // format name by upper casing and trimming spaces
             String formattedFirst = first.toUpperCase().trim();
             // set first name
-            this.firstname = formattedFirst;
+            this.firstName = formattedFirst;
         }
         return set;
     }
 
     // set last name
-    private boolean setLast(String last) {
+    boolean setLast(String last) {
         boolean set = true;
         // check if between 1 and 30 characters
         if (last.length() > 30 || last.length() < 1){
@@ -68,13 +72,13 @@ public class Person {
             // format name by upper casing and trimming spaces
             String formattedLast = last.toUpperCase().trim();
             // set last name
-            this.lastname = formattedLast;
+            this.lastName = formattedLast;
         }
         return set;
     }
 
     // set age
-    private boolean setAge(int age) {
+    boolean setAge(int age) {
         boolean set = true;
         // check if age is between 1 and 125
         if (age < 1 || age > 125){
@@ -90,7 +94,7 @@ public class Person {
     }
 
     // set salary
-    private boolean setSalary(double salary) {
+    boolean setSalary(double salary) {
         boolean set = true;
         // check if salary is between 0 and 1,000,000
         if (salary < 0 || salary > 1000000){
@@ -103,4 +107,52 @@ public class Person {
         }
         return set;
     }
+
+    // to string
+    public String toString(){
+        return this.getFirst() + " " + this.getLast() + " " + this.getSalary();
+    }
+
+//    // compare to last name
+//    public int compareTo(Person otherPerson){
+//        int out = 0;
+//        // if calling persons last name is short give priority to otherPerson
+//        if (this.getLast().length() < otherPerson.getLast().length()){
+//            out = 1;
+//            // if calling persons last name is longer give priority to calling person
+//        } else if (this.getLast().length() > otherPerson.getLast().length()){
+//            out = -1;
+//        }
+//        // otherwise neither get priority
+//        return out;
+//    }
+
+//    // compare to lower salary based
+//    public int compareTo(Person otherPerson){
+//        int out = 0;
+//        // if calling persons salary is higher other person gets priority
+//        if (this.getSalary() > otherPerson.getSalary()){
+//            out = 1;
+//            // if calling persons salary is lower calling person gets priority
+//        } else if (this.getSalary() < otherPerson.getSalary()){
+//            out = -1;
+//        }
+//        // otherwise neither get priority
+//        return out;
+//    }
+
+    // compare to higher salary based
+    public int compareTo(Person otherPerson){
+        int out = 0;
+        // if other persons salary is higher he gets priority
+        if (this.getSalary() < otherPerson.getSalary()){
+            out = 1;
+            // if calling persons salary is higher calling person gets priority
+        } else if (this.getSalary() > otherPerson.getSalary()){
+            out = -1;
+        }
+        // otherwise neither get priority
+        return out;
+    }
+
 }
