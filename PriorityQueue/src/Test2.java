@@ -1,6 +1,7 @@
 import java.util.*;
 
-public class Test {
+public class Test2 {
+
     public static void main(String[] args){
         // decide how many people we want
         int length = 3;
@@ -15,24 +16,41 @@ public class Test {
             int age = (int)(Math.random() * 123);
             double salary = Math.round((Math.random() * 100000000))/100.0;
             Person newPerson = new Person(first, last, age, salary);
-            System.out.println(newPerson);
             people[i] = newPerson;
         }
 
-        // create an empty priority queue with base class of Person
-        PriorityQueue<Person> highestSalaryQueue = new PriorityQueue<Person>();
-        // add to priority queue
-        for (int i = 0; i <  people.length; i++){
-            Person addPerson = people[i];
-            highestSalaryQueue.add(addPerson);
+        PriorityQueue<Person> pq = new PriorityQueue<Person>(5, new PersonComparator()); 
+            for (Person p : people) {
+                pq.add(p);
+            }
+            // poll and peek priority queue
+            Person firstPerson = pq.poll();
+            System.out.println("\nFirst person is " + firstPerson);
+            Person secondPerson = pq.peek();
+            System.out.println("Second person is " + secondPerson);
+            pq.poll();
+            Person thirdPerson = pq.poll();
+            System.out.println("Third person is " + thirdPerson);
+        }  
+    } 
+ 
+  
+    class PersonComparator implements Comparator<Person>{
+
+        public int compare(Person callingPerson, Person otherPerson){
+            int out = 0;
+            // if calling persons salary is higher other person gets priority
+            if (callingPerson.getSalary() > otherPerson.getSalary()){
+                out = 1;
+                // if calling persons salary is lower calling person gets priority
+            } else if (callingPerson.getSalary() < otherPerson.getSalary()){
+                out = -1;
+            }
+            // otherwise neither get priority
+            return out;
         }
-        // poll and peek priority queue
-        Person firstPerson = highestSalaryQueue.poll();
-        System.out.println("\nFirst person is " + firstPerson);
-        Person secondPerson = highestSalaryQueue.peek();
-        System.out.println("Second person is " + secondPerson);
-        highestSalaryQueue.poll();
-        Person thirdPerson = highestSalaryQueue.poll();
-        System.out.println("Third person is " + thirdPerson);
     }
-}
+
+
+
+
