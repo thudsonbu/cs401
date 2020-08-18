@@ -12,5 +12,4 @@ public class Counter {
     public synchronized void decrementCount() {
         count--;
     }
-
 }
