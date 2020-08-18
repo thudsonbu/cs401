@@ -1,6 +1,4 @@
-import java.util.Date;
-
-public class simple_threads_example {
+public class Threads {
     static void threadMessage(String message) {
         String threadName = Thread.currentThread().getName();
         System.out.format("%s:%s%n", threadName, message);
