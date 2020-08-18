@@ -6,7 +6,11 @@ public class Counter {
         return count ;
     }
     public synchronized void incrementCount() {
-        ++count;
+        count++;
+    }
+
+    public synchronized void decrementCount() {
+        count--;
     }
 
 }
