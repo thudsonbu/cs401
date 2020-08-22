@@ -1,7 +1,7 @@
 public class Threads {
     static void threadMessage(String message) {
         String threadName = Thread.currentThread().getName();
-        System.out.format("%s:%s%n", threadName, message);
+        System.out.printf("%s:%s%n", threadName, message);
     }
 
     private static class MessageLoop implements Runnable {
@@ -18,11 +18,10 @@ public class Threads {
                     Thread.sleep(4000);
                     threadMessage(importantInfo[i]);
                 }
-            } 
+            }
             catch (InterruptedException e) {
                 threadMessage("I wasn't done!");
             }
-            
         }
     
         public static void main(String args[]) throws InterruptedException {
@@ -38,7 +37,6 @@ public class Threads {
                     System.exit(1);
                 }
                 
-
                 threadMessage("Starting MessageLoop thread");
                 long startTime = System.currentTimeMillis();
                 Thread t = new Thread(new MessageLoop());
