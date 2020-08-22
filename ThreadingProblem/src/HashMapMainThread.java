@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class Main {
+public class HashMapMainThread {
 
     public static void main(String args[]) throws InterruptedException {
         int NUM_THREADS = 3;
@@ -9,7 +9,7 @@ public class Main {
         Thread[] threads = new Thread[NUM_THREADS];
 
         for (int i = 0; i < NUM_THREADS; i++) {
-            threads[i] = new Thread(new Subthread(map));
+            threads[i] = new Thread(new HashMapSubThread(map));
             threads[i].start();
         }
 
