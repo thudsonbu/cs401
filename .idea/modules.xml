@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BinarySearchTree/BinarySearchTree.iml" filepath="$PROJECT_DIR$/BinarySearchTree/BinarySearchTree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DigitalSignature/DigitalSignature.iml" filepath="$PROJECT_DIR$/DigitalSignature/DigitalSignature.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hashtable/Hashtable.iml" filepath="$PROJECT_DIR$/Hashtable/Hashtable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HashtableSpellchecker/HashtableSpellchecker.iml" filepath="$PROJECT_DIR$/HashtableSpellchecker/HashtableSpellchecker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Heap/Heap.iml" filepath="$PROJECT_DIR$/Heap/Heap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NonRecursiveSorting/NonRecursiveSorting.iml" filepath="$PROJECT_DIR$/NonRecursiveSorting/NonRecursiveSorting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecursiveSorting/RecursiveSorting.iml" filepath="$PROJECT_DIR$/RecursiveSorting/RecursiveSorting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ThreadingProblem/ThreadingProblem.iml" filepath="$PROJECT_DIR$/ThreadingProblem/ThreadingProblem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ThreadsAndProcesses/ThreadsAndProcesses.iml" filepath="$PROJECT_DIR$/ThreadsAndProcesses/ThreadsAndProcesses.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/cs401.iml" filepath="$PROJECT_DIR$/.idea/cs401.iml" />
+    </modules>
+  </component>
+</project>

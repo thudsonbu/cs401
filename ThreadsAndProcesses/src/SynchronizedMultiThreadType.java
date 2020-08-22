@@ -5,6 +5,9 @@ public class SynchronizedMultiThreadType {
         Thread inc = new Thread(new Incrementor(count));
         Thread dec = new Thread(new Decrementor(count));
 
+        inc.start();
+        dec.start();
+
         while(inc.isAlive() && dec.isAlive()){};
 
         System.out.println("total count = " + count.getCount() + " vs. expected = " + (0));

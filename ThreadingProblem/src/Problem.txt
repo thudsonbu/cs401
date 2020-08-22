@@ -1,0 +1,15 @@
+Threading Problem
+
+A Magic Number is a positive integer that can be evenly divided by 7, or is evenly divided by 4 and has a last 
+digit of 2.
+
+Create 3 threads that each generate Magic Numbers between 10000 and 99999. Each thread is to store the Magic 
+Numbers in a collection.
+
+How many unique Magic Numbers are generated in a 5 second time interval?
+
+The main thread has to keep track of time and print out the number of unique Magic Numbers generated. 
+
+Which Magic Number value is generated the most? Do these values change over several executions of the program?
+
+Do this problem using an HashMap first and then a Hashtable. Do they show different results?
