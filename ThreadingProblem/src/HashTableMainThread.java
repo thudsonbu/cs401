@@ -1,15 +1,15 @@
-import java.util.HashMap;
+import java.util.Hashtable;
 
-public class HashMapMainThread {
+public class HashTableMainThread {
 
     public static void main(String args[]) throws InterruptedException {
         int NUM_THREADS = 3;
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        Hashtable<Integer, Integer> table = new Hashtable<Integer, Integer>();
 
         Thread[] threads = new Thread[NUM_THREADS];
 
         for (int i = 0; i < NUM_THREADS; i++) {
-            threads[i] = new Thread(new HashMapSubThread(map));
+            threads[i] = new Thread(new HashTableSubThread(table));
         }
 
         for (int i = 0; i < NUM_THREADS; i++) {
@@ -29,13 +29,8 @@ public class HashMapMainThread {
             threads[i].join();
         }
 
-        for (Integer i : map.keySet()) {
-            System.out.println("Key " + i + " Value: " + map.get(i));
+        for (Integer i : table.keySet()) {
+            System.out.println("Key " + i + " Value: " + table.get(i));
         }
     }
 }
-
-// Exception in thread "Thread-1" Thread running
-// java.lang.NullPointerException
-// at HashMapSubThread.run(HashMapSubThread.java:20)
-// at java.base/java.lang.Thread.run(Thread.java:834)

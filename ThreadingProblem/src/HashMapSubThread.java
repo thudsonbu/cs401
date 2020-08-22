@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.HashMap;
 
 public class HashMapSubThread implements Runnable {
     HashMap<Integer, Integer> map;
@@ -13,10 +13,10 @@ public class HashMapSubThread implements Runnable {
             int insert = 0;
             if ( i % 7 == 0 ) {
                 insert = i;
-            } else if ( i % 4 == 0 && i % 10 == 2){
+            } else if ( i % 4 == 0 && i % 10 == 2) {
                 insert = i;
             }
-            if ( insert > 0 && map.containsKey(i) ){
+            if ( insert > 0 && map.containsKey(i) ) {
                 int currentValue = map.get(i);
                 map.put(i, currentValue + 1);
             } else if ( insert > 0 ) {
