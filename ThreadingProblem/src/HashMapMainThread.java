@@ -20,7 +20,7 @@ public class HashMapMainThread {
         long endTime = System.currentTimeMillis();
         long difference = endTime - startTime;
         
-        while (difference < 5000){
+        while (difference < 10000){
             endTime = System.currentTimeMillis();
             difference = endTime - startTime;
         }

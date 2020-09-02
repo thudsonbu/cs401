@@ -10,7 +10,12 @@ public class HashTableSubThread implements Runnable {
 
     public void run() {
         System.out.println("Thread running");
-        for (int i = 10000; i < 99999; i++) {
+        long startTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis();
+        long difference = endTime - startTime;
+        
+        int i = 10000;
+        while (difference < 5000){
             int insert = 0;
             if ( i % 7 == 0 ) {
                 insert = i;
@@ -23,6 +28,12 @@ public class HashTableSubThread implements Runnable {
             } else if ( insert > 0 ) {
                 table.put(i, 1);
             }
+            i++;
+            if (i > 99999) {
+                i = 10000;
+            }
+            endTime = System.currentTimeMillis();
+            difference = endTime - startTime;
         }
     }
 }
