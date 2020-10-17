@@ -1,22 +1,24 @@
+import java.util.Random;
+
 public class Node {
     // Instance variables
-    public double value;
+    public int value;
     public Node left;
     public Node right;
 
     // Constructor
-    public Node( double value, Node left, Node right) {
+    public Node( int value, Node left, Node right) {
         this.value = value;
         this.left = left;
         this.right = right;
     }
 
-    public double buildRandomTree(){
+    public int buildRandomTree(){
 
-        double largestRowSum = 0;
+        int largestRowSum = 0;
 
-        double[] level1 = randArr(2);
-        double[] level2 = randArr(4);
+        int[] level1 = randArr(2);
+        int[] level2 = randArr(4);
 
         // check which row has higher sum (this will be used in testing)
         if ( arrSum(level1) > arrSum(level2) ) {
@@ -41,23 +43,25 @@ public class Node {
         return largestRowSum;
     }
 
-    public static double arrSum(double[] level) {
+    public static int arrSum(int[] level) {
         
-        double sum = 0;
+        int sum = 0;
 
-        for (double num : level){
+        for (int num : level){
             sum += num;
         }
 
         return sum;
     }
 
-    public static double[] randArr(int length) {
+    public static int[] randArr(int length) {
 
-        double[] arr = new double[length];
+        int[] arr = new int[length];
+
+        Random rand = new Random();
 
         for (int i = 0; i < length; i++) {
-            double nextNum = Math.random() * 100;
+            int nextNum = rand.nextInt(10);
             arr[i] = nextNum;
         }
 

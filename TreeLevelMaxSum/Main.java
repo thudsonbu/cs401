@@ -5,28 +5,26 @@ public class Main{
         
         Node root = new Node( 5, null, null );
 
-        double highestSum = root.buildRandomTree();
+        int highestSum = root.buildRandomTree();
 
         if ( root.value > highestSum ) highestSum = root.value;
 
         assert highestSum == highestLevelSum( root ) : "Error";
 
-        System.out.println(highestSum);
-
     }
 
-    public static double highestLevelSum( Node root ) {
+    public static int highestLevelSum( Node root ) {
 
-        HashMap<Double,Double> levelSumMap = new HashMap<Double,Double>();
+        HashMap<Integer,Integer> levelSumMap = new HashMap<Integer,Integer>();
 
         highestLevelSumHelper( root, levelSumMap, 0);
 
-        double maxSum = Double.NEGATIVE_INFINITY;
+        int maxSum = 0;
 
-        double currentLevel = 0;
+        int currentLevel = 0;
 
         while ( levelSumMap.containsKey(currentLevel) ) {
-            double levelSum = levelSumMap.get(currentLevel);
+            int levelSum = levelSumMap.get(currentLevel);
             if ( levelSum > maxSum ) {
 
                 maxSum = levelSum;
@@ -36,9 +34,9 @@ public class Main{
         return maxSum;
     }
 
-    public static void highestLevelSumHelper( Node root, HashMap<Double,Double> map, double level ){
+    public static void highestLevelSumHelper( Node root, HashMap<Integer,Integer> map, int level ){
 
-        double currentValue = map.getOrDefault( level, 0.0 );
+        int currentValue = map.getOrDefault( level, 0 );
 
         map.put( level, currentValue + root.value );
 
