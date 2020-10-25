@@ -2,41 +2,62 @@ import java.util.Stack;
 import java.util.HashMap;
 import java.util.function.BiFunction;
 
-import javax.lang.model.element.Element; 
-
 public class test {
     public static void main(String args[]) {
+
+        String[] expression = new String[]{"1", "2", "3", "+", "2", "*", "-"};
         
+        System.out.println(reverseNotation(expression));
     }
 
     public static double reverseNotation(String[] expression) {
 
         // create stack that will hold equation elements
-        Stack<String> stack = new Stack<String>();
-
-        // operator hashmap (consumer is function interface)
-        HashMap<String, BiFunction<String, String, String>> operands = new HashMap<>();
-
-        operands.put("+", (String a, String b) -> addStrings(a, b));
-        operands.put("-", (String a, String b) -> subtractStrings(a, b));
-        operands.put("*", (String a, String b) -> multiplyStrings(a, b));
-        operands.put("+", (String a, String b) -> divideStrings(a, b));
+        Stack<String> stack = new Stack<String>(); 
 
         // read from expression
-        for (String element : expression) {
-            if (operands.containsKey(element)) {
+        for (String element : expression) {          
 
-                String num1 = stack.pop();
-                String num2 = stack.pop();
-                
-                String result = (num1,num2) -> operands.get(element);
+            switch(element) {
+                case "+":
+                    String add2 = stack.pop();
+                    String add1 = stack.pop();
 
-                stack.push(result);
+                    String addResult = addStrings(add1, add2);
+
+                    stack.push(addResult);
+                    break;
+                case "-":
+                    String subtract2 = stack.pop();
+                    String subtract1 = stack.pop();
+                    
+                    String subtractResult = subtractStrings(subtract1, subtract2);
+
+                    stack.push(subtractResult);
+                    break;
+                case "*":
+                    String multiply2 = stack.pop();
+                    String multiply1 = stack.pop();
+                    
+
+                    String multiplyResult = multiplyStrings(multiply1, multiply2);
+
+                    stack.push(multiplyResult);
+                    break;
+                case "/":
+                    String divide2 = stack.pop();
+                    String divide1 = stack.pop();
+                    
+
+                    String divideResult = divideStrings(divide1, divide2);
+
+                    stack.push(divideResult);
+                    break;
+                default:
+                    stack.push(element);
             }
         }
-        
-
-        return 0.0;
+        return Double.parseDouble(stack.pop());
     }
 
     public static String addStrings(String a, String b) {
