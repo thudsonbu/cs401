@@ -23,4 +23,25 @@ public class Trie {
             currNode.count += 1;
         }
     }
+
+    public String findUniquePrefix(String word){
+
+        TrieNode currNode = this.root;
+
+        String prefix = "";
+
+        for (int i = 0; i < word.length(); i++) {
+
+            String letter = word.substring(i, i+1);
+
+            currNode = currNode.children.get(letter);
+
+            prefix += letter;
+
+            if (currNode.count == 1) {
+                return prefix;
+            }
+        }
+        return "error";
+    }
 }
