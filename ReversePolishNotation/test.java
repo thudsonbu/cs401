@@ -15,47 +15,31 @@ public class test {
         // create stack that will hold equation elements
         Stack<String> stack = new Stack<String>(); 
 
+        // operator hashmap (consumer is function interface)
+        HashMap<String, BiFunction<String, String, String>> operands = new HashMap<>();
+
+        operands.put("+", (String a, String b) -> addStrings(a, b));
+        operands.put("-", (String a, String b) -> subtractStrings(a, b));
+        operands.put("*", (String a, String b) -> multiplyStrings(a, b));
+        operands.put("/", (String a, String b) -> divideStrings(a, b));
+
         // read from expression
         for (String element : expression) {          
 
-            switch(element) {
-                case "+":
-                    String add2 = stack.pop();
-                    String add1 = stack.pop();
+            if (operands.containsKey(element)){
 
-                    String addResult = addStrings(add1, add2);
+                String add2 = stack.pop();
+                String add1 = stack.pop();
 
-                    stack.push(addResult);
-                    break;
-                case "-":
-                    String subtract2 = stack.pop();
-                    String subtract1 = stack.pop();
-                    
-                    String subtractResult = subtractStrings(subtract1, subtract2);
+                String result = operands.get(element).apply(add1, add2);
 
-                    stack.push(subtractResult);
-                    break;
-                case "*":
-                    String multiply2 = stack.pop();
-                    String multiply1 = stack.pop();
-                    
+                stack.push(result);
 
-                    String multiplyResult = multiplyStrings(multiply1, multiply2);
+            } else {
 
-                    stack.push(multiplyResult);
-                    break;
-                case "/":
-                    String divide2 = stack.pop();
-                    String divide1 = stack.pop();
-                    
-
-                    String divideResult = divideStrings(divide1, divide2);
-
-                    stack.push(divideResult);
-                    break;
-                default:
-                    stack.push(element);
+                stack.push(element);
             }
+            
         }
         return Double.parseDouble(stack.pop());
     }
