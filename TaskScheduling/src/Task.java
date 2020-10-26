@@ -34,14 +34,7 @@ public class Task implements Comparable<Task> {
 
             Task otherTask = (Task)otherObject;
 
-            if (otherTask.name.equals(this.name)){
-
-                return true;
-
-            } else {
-
-                return false;
-            }
+            return otherTask.name.equals(this.name);
         }
     }
 }

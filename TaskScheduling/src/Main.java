@@ -26,7 +26,9 @@ public class Main {
 
         ArrayList<Task> runningTasks = new ArrayList<>(); // keep track of running tasks and wait
 
-        for(String task : tasks){
+        ArrayList<Task> tasksToRemove = new ArrayList<>();
+
+        for(int i = 0; i < tasks.length; i++){
 
             // if there are tasks in the queue schedule them and add them to running
             if(queue.size() > 0){
@@ -47,7 +49,7 @@ public class Main {
             }
 
             // re add to queue tasks which have "cooled down" and decrement wait
-            for(Task runningTask : runningTasks){
+            for (Task runningTask : runningTasks){
 
                 if(runningTask.count == 0){ // task should be added back if no remaining wait
 
@@ -58,13 +60,20 @@ public class Main {
                         queue.add(new Task(runningTask.name, count));
                     }
 
-                    runningTasks.remove(runningTask);
+                    tasksToRemove.add(runningTask);
 
                 } else {
 
                     runningTask.count--; // decrement remaining wait
                 }
             }
+
+            for (Task task : tasksToRemove) {
+
+                runningTasks.remove(task);
+            }
+
+            tasksToRemove.clear();
         }
 
         return scheduledTasks;
