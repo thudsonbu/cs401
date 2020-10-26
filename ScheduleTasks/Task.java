@@ -18,7 +18,30 @@ public class Task implements Comparable<Task> {
 
             return 1;
         }
-
     }
 
+    public boolean equals(Object otherObject) { 
+
+        if (otherObject == null){
+
+            return false;
+
+        } else if(this.getClass() != otherObject.getClass()){
+
+            return false;
+
+        } else {
+
+            Task otherTask = (Task)otherObject;
+
+            if (otherTask.name.equals(this.name)){
+
+                return true;
+
+            } else {
+
+                return false;
+            }
+        }
+    } 
 }
