@@ -1,0 +1,21 @@
+PROBLEM:
+
+Hi, here's your problem today. This problem was recently asked by Amazon:
+
+A task is a some work to be done which can be assumed takes 1 unit of time. Between the same type of tasks you must take at least n units of time before running 
+the same tasks again.
+
+Given a list of tasks (each task will be represented by a string), and a positive integer n representing the time it takes to run the same task again, find the minimum
+amount of time needed to run all tasks.
+
+SOLUTION:
+
+The goal of the problem is the minimize the amount of down time waiting between tasks. We do this by scheduling a different kind of task during a tasks down time.
+Thus, the limiting factor is the inability to schedule other tasks within the one tasks down time. To avoid this, we need to find which task occurs the most because filling 
+in this tasks down time will be the greatest challenge. 
+
+We will do this by reading in each task to a hashmap with the task as the key and the count of that task as the value.
+This will give us a constant time read in of tasks.
+
+Next, we will take these tasks and their counts and place them within a priority queue based on the number of times a task must be scheduled. This will allow us to find the the task 
+which occurs the most, run that task, and use the next elements in the priority queue to fill the down time until we can run the most important task again.
