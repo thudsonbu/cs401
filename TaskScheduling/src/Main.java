@@ -57,6 +57,9 @@ public class Main {
 
                         queue.add(new Task(runningTask.name, count));
                     }
+
+                    runningTasks.remove(runningTask);
+
                 } else {
 
                     runningTask.count--; // decrement remaining wait
