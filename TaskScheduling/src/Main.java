@@ -26,7 +26,7 @@ public class Main {
 
         ArrayList<Task> runningTasks = new ArrayList<>(); // keep track of running tasks and wait
 
-        ArrayList<Task> tasksToRemove = new ArrayList<>();
+        ArrayList<Task> tasksToRemove = new ArrayList<>(); // tasks that have cooled down to remove from running tasks
 
         for(int i = 0; i < tasks.length; i++){
 
@@ -73,7 +73,7 @@ public class Main {
                 runningTasks.remove(task);
             }
 
-            tasksToRemove.clear();
+            tasksToRemove.clear(); // these tasks have been removed
         }
 
         return scheduledTasks;

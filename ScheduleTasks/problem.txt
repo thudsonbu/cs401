@@ -1,7 +1,5 @@
 PROBLEM:
 
-Hi, here's your problem today. This problem was recently asked by Amazon:
-
 A task is a some work to be done which can be assumed takes 1 unit of time. Between the same type of tasks you must take at least n units of time before running 
 the same tasks again.
 
