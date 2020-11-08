@@ -1,7 +1,7 @@
 public class SortTester {
     public static void main(String[] args){
 
-        int[] randArr = generateRandomArr(10);
+        int[] randArr = generateRandomArr(20);
         printArr(randArr);
 
         int[] insertionSorted = Sorter.insertionSort(randArr);

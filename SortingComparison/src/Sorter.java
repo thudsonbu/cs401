@@ -117,7 +117,7 @@ public class Sorter {
             createHeap(arr, len-1, i);
         }
         // for each element
-        for(int i = len-1; i > 0; i-- ){
+        for(int i = len-1; i >= 0; i-- ){
             // swap last heap element and root
             int swap = arr[0];
             arr[0] = arr[i];
