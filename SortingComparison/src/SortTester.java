@@ -7,17 +7,13 @@ public class SortTester {
         printArr(randArr);
 
         int[] insertionSorted = Sorter.insertionSort(randArr);
-        printArr(randArr);
+        printArr(insertionSorted);
 
         randArr = generateRandomArr(10);
-        printArr(randArr);
-
         int[] bubbleSorted = Sorter.bubbleSort(randArr);
         printArr(bubbleSorted);
 
         randArr = generateRandomArr(10);
-        printArr(randArr);
-
         int[] shellSorted = Sorter.shellSort(randArr, 10);
         printArr(shellSorted);
 
@@ -26,6 +22,12 @@ public class SortTester {
 
         int[] mergeSorted = Sorter.mergeSort(randArr);
         printArr(mergeSorted);
+
+        randArr = generateRandomArr(20);
+        printArr(randArr);
+
+        int[] heapSorted = Sorter.heapSort(randArr);
+        printArr(heapSorted);
     }
 
     public static void printArr(int[] arr){
@@ -42,7 +44,6 @@ public class SortTester {
     public static int[] generateRandomArr(int length){
 
         int[] randArr = new int[length];
-        Random rand = new Random();
 
         for (int i = 0; i < length; i++){
 

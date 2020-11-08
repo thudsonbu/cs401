@@ -94,18 +94,57 @@ public class Sorter {
                 originalLocation++;
             }
         }
-        // while right remaining copy to original
+        // while right remaining copy to original (there will be no left remaining)
         while(rightLocation < sortedRight.length){
             arr[originalLocation] = sortedRight[rightLocation];
             originalLocation++;
             rightLocation++;
         }
-        // while left remaining copy to original
+        // while left remaining copy to original (there will be no right remaining)
         while(leftLocation < sortedLeft.length){
             arr[originalLocation] = sortedLeft[leftLocation];
             originalLocation++;
             leftLocation++;
         }
         return arr;
+    }
+
+    public static int[] heapSort(int[] arr){
+        // build a heap
+        int len = arr.length;
+        // for every subtree createHeap
+        for(int i = (len/2)-1; i >= 0; i--){
+            createHeap(arr, len-1, i);
+        }
+        // for each element
+        for(int i = len-1; i > 0; i-- ){
+            // swap last heap element and root
+            int swap = arr[0];
+            arr[0] = arr[i];
+            arr[i] = swap; // will be cut off when i is decremented
+            // call createHeap on tree to re-balance
+            createHeap(arr, i, 0);
+        }
+        return arr;
+    }
+
+    public static void createHeap(int[] arr, int n, int root){
+        int len = n-1;
+        int largest = root;
+        int left = 2*root + 1; // left branch
+        int right = 2*root + 2; // right branch
+        // check if left child is larger then root
+        if(left < len && arr[left] > arr[largest]) largest = left;
+        // check if right child is larger then root (and left)
+        if(left < len && arr[right] > arr[largest]) largest = right;
+        // if the largest is not root
+        if(largest != root){
+            // swap positions of largest and greater branch
+            int swap = arr[root];
+            arr[root] = arr[largest];
+            arr[largest] = swap;
+            // call createHeap on edited branch
+            createHeap(arr, arr.length, largest);
+        }
     }
 }
