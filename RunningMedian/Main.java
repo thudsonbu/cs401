@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args) {
         
         int[] nums = { 1, 3, 5, 2, 7, 9, 9 };
-        int[] runningMedians = { 0, 1, 2, 3, 2, 3, 4, 5 };
 
         int[] medians = runningMedian( nums );
         
@@ -22,20 +21,20 @@ public class Main {
         int[] runningMedian = new int[nums.length+1];
         runningMedian[1] = nums[0];
 
-        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>();
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>();
 
         if ( nums[0] > nums[1] ) {
-            minHeap.add( -nums[1] ); // min heap values are netative to reverse comparator
+            minHeap.add( -nums[1] ); // min heap values are negative to reverse comparator
             maxHeap.add( nums[0] );
         } else {
-            minHeap.add( -nums[0] ); // min heap values are netative to reverse comparator
+            minHeap.add( -nums[0] ); // min heap values are negative to reverse comparator
             maxHeap.add( nums[1] );
         }
 
         for ( int i = 2; i < nums.length; i++ ) {
 
-            int newMedian = getMedian( runningMedian, minHeap, maxHeap );
+            int newMedian = getMedian(minHeap, maxHeap );
             runningMedian[i] = newMedian;
 
             int newNum = nums[i];
@@ -45,7 +44,7 @@ public class Main {
             rebalanceHeaps( minHeap, maxHeap );
         }
 
-        int newMedian = getMedian( runningMedian, minHeap, maxHeap );
+        int newMedian = getMedian(minHeap, maxHeap );
         runningMedian[nums.length] = newMedian;
 
         return runningMedian;
@@ -80,7 +79,7 @@ public class Main {
         }
     }
 
-    public static int getMedian( int[] runningMedian, PriorityQueue<Integer> minHeap, PriorityQueue<Integer> maxHeap ) {
+    public static int getMedian(PriorityQueue<Integer> minHeap, PriorityQueue<Integer> maxHeap) {
 
         if ( minHeap.size() > maxHeap.size() ) {
 
@@ -91,8 +90,6 @@ public class Main {
             return maxHeap.peek(); 
         }
 
-        int currentMedian = ( maxHeap.peek() - minHeap.peek() )/2 ;
-
-        return currentMedian;
+        return ( maxHeap.peek() - minHeap.peek() )/2;
     }
 }
