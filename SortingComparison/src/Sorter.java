@@ -144,7 +144,7 @@ public class Sorter {
             arr[root] = arr[largest];
             arr[largest] = swap;
             // call createHeap on edited branch
-            createHeap(arr, arr.length, largest);
+            createHeap(arr, len, largest);
         }
     }
 }
