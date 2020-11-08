@@ -14,6 +14,12 @@ public class SortTester {
 
         int[] bubbleSorted = Sorter.bubbleSort(randArr);
         printArr(bubbleSorted);
+
+        randArr = generateRandomArr(10);
+        printArr(randArr);
+
+        int[] shellSorted = Sorter.shellSort(randArr, 10);
+        printArr(shellSorted);
     }
 
     public static void printArr(int[] arr){

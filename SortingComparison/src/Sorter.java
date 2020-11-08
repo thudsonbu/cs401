@@ -45,4 +45,25 @@ public class Sorter {
 
         return arr;
     }
+
+    public static int[] shellSort(int[] arr, int startGap){
+        // begin with large gap between elements being compared and reduce gap size each iteration
+        for(int gap = startGap; gap > 0; gap /= 2){
+            // from the gap location forward iterate elements
+            for(int i = gap; i < arr.length; i++){
+
+                int key = arr[i];
+                // search for location where key (right element is greater)
+                int j;
+                for(j = i; j >= gap && arr[j-gap] > key; j-= gap){
+
+                    arr[j] = arr[j-gap];
+                }
+                // swap right element to location where it is greater
+                arr[j] = key;
+            }
+        }
+
+        return arr;
+    }
 }
