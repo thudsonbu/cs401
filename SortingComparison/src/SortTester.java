@@ -1,31 +1,14 @@
 public class SortTester {
     public static void main(String[] args){
 
-        int[] randArr = generateRandomArr(20);
+        //int[] randArr = generateRandomArr(6);
+
+
+        int[] randArr = new int[]{1, 7, 16, 7, 15, 11, };
         printArr(randArr);
 
-        int[] insertionSorted = Sorter.insertionSort(randArr);
-        printArr(insertionSorted);
-
-        randArr = generateRandomArr(10);
-        int[] bubbleSorted = Sorter.bubbleSort(randArr);
-        printArr(bubbleSorted);
-
-        randArr = generateRandomArr(10);
-        int[] shellSorted = Sorter.shellSort(randArr, 10);
-        printArr(shellSorted);
-
-        randArr = generateRandomArr(20);
-        printArr(randArr);
-
-        int[] mergeSorted = Sorter.mergeSort(randArr);
-        printArr(mergeSorted);
-
-        randArr = generateRandomArr(20);
-        printArr(randArr);
-
-        int[] heapSorted = Sorter.heapSort(randArr);
-        printArr(heapSorted);
+        int[] sorted = Sorter.heapSort(randArr);
+        printArr(sorted);
     }
 
     public static void printArr(int[] arr){
