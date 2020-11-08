@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class SortTester {
-    public static void main(String args[]){
+    public static void main(String[] args){
 
         int[] randArr = generateRandomArr(10);
         printArr(randArr);
@@ -20,6 +20,12 @@ public class SortTester {
 
         int[] shellSorted = Sorter.shellSort(randArr, 10);
         printArr(shellSorted);
+
+        randArr = generateRandomArr(20);
+        printArr(randArr);
+
+        int[] mergeSorted = Sorter.mergeSort(randArr);
+        printArr(mergeSorted);
     }
 
     public static void printArr(int[] arr){
