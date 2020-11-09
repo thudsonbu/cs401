@@ -1,13 +1,11 @@
 public class SortTester {
     public static void main(String[] args){
 
-        //int[] randArr = generateRandomArr(6);
-
-
-        int[] randArr = new int[]{1, 7, 16, 7, 15, 11, };
+        int[] randArr = generateRandomArr(10);
+        // int[] randArr = new int[]{1, 7, 16, 7, 15, 11, };
         printArr(randArr);
 
-        int[] sorted = Sorter.heapSort(randArr);
+        int[] sorted = Sorter.quickSort(randArr, randArr.length);
         printArr(sorted);
     }
 

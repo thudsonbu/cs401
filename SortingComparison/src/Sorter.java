@@ -146,4 +146,56 @@ public class Sorter {
             createHeap(arr, n, largest);
         }
     }
+
+    public static int[] quickSort(int[] arr, int len){
+        // base case return value
+        if(len <= 1){
+            return arr;
+        }
+        // decide on partition (lets use middle)
+        int partLoc = len/2;
+        int part = arr[partLoc];
+        // create lower and higher arrays
+        int[] low = new int[len];
+        int[] high = new int[len];
+        // copy from original arr to lower and higher
+        int lowInd = 0;
+        int highInd = 0;
+        for(int i = 0; i < len; i++){
+            // skip part location
+            if(i == partLoc) continue;
+            int num = arr[i];
+            // if num is greater then part add to high
+            if(num > part){
+                high[highInd] = num;
+                highInd++;
+            } else { // otherwise add to low
+                low[lowInd] = num;
+                lowInd++;
+            }
+        }
+        int arrInd = 0;
+        // call quick sort on low if there are items in it
+        if(lowInd > 0) {
+            low = quickSort(low, lowInd);
+            // add low elements to original
+            for(int i = 0; i < lowInd; i++){
+                arr[arrInd] = low[i];
+                arrInd++;
+            }
+        }
+        // add partition
+        arr[arrInd] = part;
+        arrInd++;
+        // call quick sort on high if there are items in it
+        if(highInd > 0) {
+            high = quickSort(high, highInd);
+            // add high elements to original
+            for(int i = 0; i < highInd; i++){
+                arr[arrInd] = high[i];
+                arrInd++;
+            }
+        }
+        return arr;
+    }
 }
