@@ -14,19 +14,26 @@ within the one tasks down time. To avoid this, we need to find which task occurs
 down time will be the greatest challenge.
 
 We will begin by reading in each task to a hashmap with the task as the key and the count of that task as the value.
-This will give us a constant time read in of tasks.
+A hashmap is ideal for this application as we will need to repeatedly look up and edit the value based on unique names
+of tasks. With a hashmap, this lookup occurs in constant time which is better then the search that would be required
+in any other data structure regardless of wheather the structure was sorted or not.
 
 Next, we will take these tasks and their counts and place them within a priority queue based on the number of times a
 task must be scheduled. In Java, priority queues are based on a heap structure and use the natural ordering to
 determine where in a heap a specific element belongs. Java's priority queue gives us log(n) time for the adding and
-removal of elements which we will do frequently. This is the limiting part of the program in terms of time.
+removal of elements which we will do frequently. This is the limiting part of the program in terms of time, but it is 
+a good choice for this application. Priority queus and their underlying heap are ideal for scenarios in which a max or
+min of a group of elements is needed to be referenced quickly. This is because the max or min are stored at the top 
+of the heap and will not require a search or any comparisons. The only downside to the structure is the maitnance cost 
+or restructuring the heap but even this results in just log(n) comparisons while other data structures like an array or
+linked list would require n comparisons or if sorted n(logn) for the initial sort.
 
 In the Task class we have implemented the Comparable interface which allows us to specify a custom compareTo
 method that will be used for the "natural ordering" of elements in our priority queue. Our method does not return equal
 as this would not serve a purpose and would increase this operations used for this method.
 
 Using the priority queue we can determine which element should be scheduled next. When an element is scheduled it is
-then moved added to a list of elements that are currently in "cool down". Once the downtown of the element has passed,
+then moved added to a list of elements that are currently in "cool down". Once the downtime of the element has passed,
 it is re-added to the priority queue. Each iteration of the outer most for loop represents a unit of time. Thus, each
 time the for loop iterates we decrement the remaining cool down time of the elements in the running task list. We use
 array lists to keep track of running tasks because we have no idea how many different types of tasks will be used so
