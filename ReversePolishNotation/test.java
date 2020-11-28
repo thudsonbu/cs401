@@ -1,4 +1,4 @@
-import java.util.Stack;
+import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.function.BiFunction;
 
@@ -13,48 +13,37 @@ public class test {
 
     public static double polishNotationCalculator(String[] expression){
 
-        Stack<Double> numberStack = new Stack<Double>();// number stack of numbers awaiting operation
+        ArrayDeque<Double> numStack = new ArrayDeque<Double>();// number ArrayDeque of numbers awaiting operation
         double num1;
         double num2;
+
+        // operator hashmap (consumer is function interface)
+        HashMap<String, BiFunction<Double, Double, Double>> operands = new HashMap<>();
+
+        operands.put("+", (Double a, Double b) -> add(a, b));
+        operands.put("-", (Double a, Double b) -> sub(a, b));
+        operands.put("*", (Double a, Double b) -> mult(a, b));
+        operands.put("/", (Double a, Double b) -> div(a, b));
 
         for(String item : expression){
             try {// try to parse input as double
                 double num = Double.parseDouble(item);
-                numberStack.push(num);
+                numStack.push(num);
 
             } catch (Exception e){ // if not double must be operator
 
-                switch (item) {
-                    case "+":
-                        num1 = numberStack.pop();
-                        num2 = numberStack.pop();
-                        numberStack.push(num1 + num2);
-                        break;
-                    case "-":
-                        num1 = numberStack.pop();
-                        num2 = numberStack.pop();
-                        numberStack.push(num2 - num1);
-                        break;
-                    case "*":
-                        num1 = numberStack.pop();
-                        num2 = numberStack.pop();
-                        numberStack.push(num2 * num1);
-                        break;
-                    case "/":
-                        num1 = numberStack.pop();
-                        num2 = numberStack.pop();
-                        numberStack.push(num2 / num1);
-                        break;
-                }
+                num1 = numStack.pop();
+                num2 = numStack.pop();
+                numStack.push(operands.get(item).apply(num1, num2));
             }
         }
-        return numberStack.pop();
+        return numStack.pop();
     }
 
     public static double reverseNotation(String[] expression) {
 
-        // create stack that will hold equation elements
-        Stack<String> stack = new Stack<String>(); 
+        // create ArrayDeque that will hold equation elements
+        ArrayDeque<String> ArrayDeque = new ArrayDeque<String>(); 
 
         // operator hashmap (consumer is function interface)
         HashMap<String, BiFunction<String, String, String>> operands = new HashMap<>();
@@ -69,20 +58,36 @@ public class test {
 
             if (operands.containsKey(element)){
 
-                String add2 = stack.pop();
-                String add1 = stack.pop();
+                String add2 = ArrayDeque.pop();
+                String add1 = ArrayDeque.pop();
 
                 String result = operands.get(element).apply(add1, add2);
 
-                stack.push(result);
+                ArrayDeque.push(result);
 
             } else {
 
-                stack.push(element);
+                ArrayDeque.push(element);
             }
             
         }
-        return Double.parseDouble(stack.pop());
+        return Double.parseDouble(ArrayDeque.pop());
+    }
+
+    public static double add(double a, double b){
+        return b + a;
+    }
+
+    public static double sub(double a, double b){
+        return b - a;
+    }
+
+    public static double mult(double a, double b){
+        return b * a;
+    }
+
+    public static double div(double a, double b){
+        return b / a;
     }
 
     public static String addStrings(String a, String b) {
