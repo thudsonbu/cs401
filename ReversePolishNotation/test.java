@@ -8,6 +8,47 @@ public class test {
         String[] expression = new String[]{"1", "2", "3", "+", "2", "*", "-"};
         
         System.out.println(reverseNotation(expression));
+        System.out.println(polishNotationCalculator(expression));
+    }
+
+    public static double polishNotationCalculator(String[] expression){
+
+        Stack<Double> numberStack = new Stack<Double>();// number stack of numbers awaiting operation
+        double num1;
+        double num2;
+
+        for(String item : expression){
+            try {// try to parse input as double
+                double num = Double.parseDouble(item);
+                numberStack.push(num);
+
+            } catch (Exception e){ // if not double must be operator
+
+                switch (item) {
+                    case "+":
+                        num1 = numberStack.pop();
+                        num2 = numberStack.pop();
+                        numberStack.push(num1 + num2);
+                        break;
+                    case "-":
+                        num1 = numberStack.pop();
+                        num2 = numberStack.pop();
+                        numberStack.push(num2 - num1);
+                        break;
+                    case "*":
+                        num1 = numberStack.pop();
+                        num2 = numberStack.pop();
+                        numberStack.push(num2 * num1);
+                        break;
+                    case "/":
+                        num1 = numberStack.pop();
+                        num2 = numberStack.pop();
+                        numberStack.push(num2 / num1);
+                        break;
+                }
+            }
+        }
+        return numberStack.pop();
     }
 
     public static double reverseNotation(String[] expression) {

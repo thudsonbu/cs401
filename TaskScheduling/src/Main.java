@@ -10,7 +10,7 @@ public class Main {
 
         ArrayList<String> taskSchedule = scheduleTasks(tasks, 2);
 
-        for(String task : taskSchedule){
+        for (String task : taskSchedule) {
 
             System.out.print(task + ", ");
         }
