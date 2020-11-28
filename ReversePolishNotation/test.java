@@ -11,6 +11,7 @@ public class test {
         System.out.println(polishNotationCalculator(expression));
     }
 
+    // improved solution
     public static double polishNotationCalculator(String[] expression){
 
         ArrayDeque<Double> numStack = new ArrayDeque<Double>();// number ArrayDeque of numbers awaiting operation
